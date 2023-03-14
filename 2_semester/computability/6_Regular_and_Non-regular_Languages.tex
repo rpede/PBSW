@@ -1,0 +1,56 @@
+\input{head.tex}
+
+\begin{frame}
+    \frametitle{Regular and Non-regular Languages}
+    How can a language be shown to be regular? How can a language be shown to
+    be not regular? Is the language $\{a^nb^n | n > 0 \}$ regular? Explain and
+    justify your answer.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Regular Languages}
+    If $\Sigma$ is an alphabet, then the set of regular languages is defined
+    as:\\
+    $\mathcal{R}$:
+    \begin{enumerate}
+        \item $\emptyset \in \mathcal{R}$
+        \item For every $a \in \Sigma$, $\{a\} \in \mathcal{R}$
+        \item For any $L_1$ and $L_2$ in $\mathcal{R}$,
+            \[L_1 \cup L_2 \in \mathcal{R}\]
+            \[L_1 L_2 \in \mathcal{R}\]
+            \[L_1^\ast \in \mathcal{R}\]
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Pumping Lemma}
+    $L \subseteq \Sigma^\ast$\\
+    $M = (Q, \Sigma, q_0, A, \delta)$\\
+    $n = |Q|$\\
+
+    \vspace{10 pt}
+    For every $x \in L$ where $|x| \geq n$, $x = uvw$ and
+    \begin{enumerate}
+        \item $|uv| \leq n$,
+        \item $|v| > 0$ (or $v \neq \Lambda$),
+        \item $\forall_{i \geq 0} | uv^iw \in L$
+    \end{enumerate}
+    must be true.
+\end{frame}
+
+\begin{frame}
+    \frametitle{A not regular language}
+    $\{a^n b^n | n > 0 \}$ is not regular.\\
+    \vspace{10 pt}
+    Proof:\\
+    Assume a FA $M$ with $n = |Q|$, $x = a^n b^n$ and $|x| \geq n$.\\
+    There should be a $u$, $v$ and $w$ such that $x = uvw$.
+    \begin{enumerate}
+        \item $|uv| \leq n$
+        \item $|v| > 0$, $v = a^k$ where $k > 0$
+        \item With $i > 1$ then $uv^iw \in L \rightarrow a^{i+k}b^i \in L$ is a
+            contradiction because $i+k \neq i$.
+    \end{enumerate}
+\end{frame}
+
+\input{tail.tex}

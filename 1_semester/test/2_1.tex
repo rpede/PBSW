@@ -1,0 +1,57 @@
+\input{head.tex}
+\section{Q 2.1: Equivalence partitioning}
+
+\begin{frame}
+    \frametitle{Specification-Based Test Techniques}
+    \begin{itemize}
+        \item Black-box testing
+        \item Test cases derived from specification
+        \item Test the system according to the specification
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Equivalence Partitioning}
+    \begin{itemize}
+        \item Program as a function $P(x)$
+        \item Test vectors $a$ and $b$
+        \item $P(a)$ cover a list of instructions $C_a$
+        \item If $C_a = C_b$ they are in the same equivalence partition
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Equivalence Partitioning in Testing}
+    \begin{itemize}
+        \item Impossible to cover all inputs
+        \item Partition should be handled the same
+        \item Cover each partition
+    \end{itemize}
+\end{frame}
+
+%\begin{frame}
+%    \frametitle{Example}
+%    \textbf{Tickets}\\
+%    Number of persons (\$100 per person)\\
+%    Payment method (cash +25\%, credit card +\$1)\\~\\
+%    % One for each payment method, plus negative number of persons
+%\end{frame}
+
+\begin{frame}
+    \frametitle{Example}
+    \textbf{Interest Rate}\\
+    \begin{itemize}
+        \item 0-5000\$ 3\%
+        \item Over 5000\$ 5\%
+        \item Loyalty bonus: +0.2\% per year (max 50 years)
+    \end{itemize}
+    % Test cases: 1$ 1 year, 9001$ 1year, 1$ 100years
+\end{frame}
+
+\begin{frame}
+    \frametitle{Other Techniques}
+    Boundary value analysis
+    % Programmers often make mistakes at boundaries
+\end{frame}
+
+\input{tail.tex}

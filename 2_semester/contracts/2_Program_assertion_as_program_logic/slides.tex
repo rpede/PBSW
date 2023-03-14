@@ -1,0 +1,105 @@
+\input{../head.tex}
+\section{Question}
+
+\begin{frame}
+    \frametitle{Program assertion as program logic}
+
+    What is a program assertion - and in what sense is it a contract? Outline
+    the basic program logic for assignment and some control structures. Show
+    how this program logic can be used to give a formal proof of a fragment of
+    code.
+\end{frame}
+
+\section{Assertions \& contracts}
+
+\input{../assertion.tex}
+
+\begin{frame}
+    \frametitle{Assertion as a contract}
+    \begin{itemize}
+    \item The prior statement must guarantee that the assertion is true.
+    \pause \item The statement that follow can assume that the assertion is true.
+    \end{itemize}
+\end{frame}
+
+\section{Program logic \& proofs}
+
+\subsection{Assignment}
+
+\begin{frame}[fragile]
+    \frametitle{Assignment}
+    A form of substitution.
+    \begin{minted}[mathescape]{csharp}
+        // $\{ x < N \}$
+        x = x + 1;
+        // $\{ x \leq N \}$
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Assignment}
+    A form of substitution.
+    \begin{minted}[mathescape]{csharp}
+        // $\{ x < N \}$
+        // $\{ x + 1 < N + 1 \}$
+        // $\{ x + 1 <= N \}$
+        x = x + 1;
+        // $\{ x <= N \}$
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Assignment continued}
+    Swapping values.
+    \begin{minted}[mathescape]{csharp}
+        // $\{ (x = X) \wedge (y = Y) \}$
+        x = x + y
+        y = x - y
+        x = x - y
+        // $\{ (x = Y) \wedge (y = X) \}$
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Assignment continued}
+    \begin{minted}[mathescape]{csharp}
+    // $\{ (x = X) \wedge (y = Y) \}$
+    // $\{ (x + y - y = X) \wedge (y = Y) \}$
+    x = x + y ;
+    // $\{ (x - x + y = Y) \wedge (x - y = X) \}$
+    y = x - y ;
+    // $\{ (x - y = Y) \wedge (y = X) \}$
+    x = x - y
+    // $\{ (x = Y) \wedge (y = X) \}$
+    \end{minted}
+\end{frame}
+
+\subsection{Selection}
+
+\begin{frame}[fragile]
+    \frametitle{Selection}
+    \begin{minted}[mathescape]{csharp}
+        // $\{ Q \}$
+        if (B) {
+            // $\{ Q \wedge B \} S_1 \{ R \}$
+        }
+        else {
+            // $\{ Q \wedge \neq B \} S_2 \{ R \}$
+        }
+        // $\{ R \}$
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Selection}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+        $\{ Q \wedge B \} S_1 \to \{ R \}$ \\
+        $\{ Q \wedge \neq B \} S_2 \to \{ R \}$
+
+        \column{.5\textwidth}
+        $\{ Q \} \to \{ R \}$
+    \end{columns}
+\end{frame}
+
+\input{../tail.tex}

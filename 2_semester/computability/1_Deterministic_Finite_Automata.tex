@@ -1,0 +1,68 @@
+\input{head.tex}
+
+\begin{frame}
+    \frametitle{Deterministic Finite Automata}
+    Define formally a finite automaton and the language accepted by a finite
+    automaton. Describe a language over the alphabet $\{a, b\}$ that can be
+    accepted by a finite automaton. Explain and justify your answer.
+\end{frame}
+
+\begin{frame}
+    \frametitle{A Finite Automaton}
+    $(Q,\Sigma,q_0, A,\delta)$\\
+    $Q$ is a finite set of \emph{states};\\
+    $\Sigma$ is a finite \emph{input alphabet};\\
+    $q_0 \in Q$ is the \emph{initial} state;\\
+    $A \subseteq Q$ is the set of \emph{accepting} states;\\
+    $\delta : Q \times \Sigma \rightarrow Q$ is the \emph{transition}
+    function.\\
+    For $q \in Q$ and $\sigma \in \Sigma$ then $\delta(q, \sigma)$ denotes the
+    state transition from $q$ on input $\sigma$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Extended Transition Function $\delta^\ast$}
+    $\delta^\ast : Q \times \Sigma^\ast \rightarrow Q$\\
+    $\delta^\ast (q, y\sigma) = \delta(\delta^\ast (q, y), \sigma)$
+\end{frame}
+
+\begin{frame}
+    \frametitle{Language accepted by a NFA}
+    $L(M) = \{x \in \Sigma^\ast \left|\right (\delta^\ast (q_0, x)) \in A\}$
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example}
+    The language over $\{a,b\}$ containing at least 1 $b$.
+
+    \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
+\node[initial,state]      (q0)               {$q_0$};
+\node[state,accepting]    (q1) [right of=q0] {$q_1$};
+
+\path[->] (q0) edge [loop above] node {a} (q0);
+\path[->] (q0) edge              node {b} (q1);
+\path[->] (q1) edge [loop above] node {a,b} (qq);
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example}
+    $M = (Q,\Sigma,q_0, A,\delta)$\\
+    $Q = \{q_0, q_1\}$;\\
+    $\Sigma = \{a,b\}$;\\
+    $A = \{q_1\}$ and $A \subseteq Q$;\\
+
+    \vspace{10pt}
+    $\delta$ is given by the table:\\
+
+    \begin{tabular}{ c | c c }
+        \hline
+        $q$ & $\delta(q,a)$ & $\delta(q,b)$ \\
+        \hline
+        $q_0$ & $q_0$ & $q_1$ \\
+        $q_1$ & $q_1$ & $q_1$ \\
+        \hline
+    \end{tabular}
+\end{frame}
+
+\input{tail.tex}

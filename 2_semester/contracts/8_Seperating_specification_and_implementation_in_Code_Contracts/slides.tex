@@ -1,0 +1,72 @@
+\input{../head.tex}
+
+\begin{frame}
+    \frametitle{Separating specification and implementation in Code Contracts}
+
+    How can we separate specification and implementation using Code Contract?
+\end{frame}
+
+\section{Code Contracts}
+
+\input{../code_contracts.tex}
+
+\section{Seperating Specification}
+
+\subsection{Interface \& Contract Class}
+
+\input{../class_specification.tex}
+
+\subsection{Inheritance of Preconditions}
+
+\begin{frame}
+    \frametitle{Inheritance of Preconditions}
+
+    Subtypes can \underline{not} have stronger preconditions.
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Command Pattern}
+
+    \begin{minted}{csharp}
+[ContractClass(typeof(ICommandContract))]
+public interface ICommand {
+    IStack<int> Execute(IStack<int> stack);
+}
+
+[ContractClassFor(typeof(ICommand))]
+abstract class ICommandContract {
+    [Pure]
+    IStack<int> Execute(IStack<int> stack) {
+        Contract.Requires(stack != null);
+        Contract.Ensures(stack != null);
+    }
+}
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Stronger Precondition}
+
+    \begin{minted}{csharp}
+public class PopCommand : ICommand {
+    public IStack<int> Execute(IStack<int> stack) {
+        Contract.Requires(stack.Count > 0); // Stronger!
+        // ...
+    }
+}
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Solution}
+
+    \begin{minted}{csharp}
+public interface ICommand {
+    IStack<int> Execute(IStack<int> stack);
+    [Pure]
+    bool CanExecute(IStack<int> stack);
+}
+    \end{minted}
+\end{frame}
+
+\input{../tail.tex}

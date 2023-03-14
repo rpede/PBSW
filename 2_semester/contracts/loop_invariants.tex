@@ -1,0 +1,66 @@
+\begin{frame}[fragile]
+    \frametitle{Loop Invariant}
+    \begin{minted}[mathescape]{csharp}
+    // $\{ Q \}$
+    // $S_0$
+    // $\{ P \}$
+    while(B) {
+        // $\{ P \wedge B \}$
+        // $S$
+        // $\{ P \}$
+    }
+    // $\{P \wedge \neg B \Rightarrow R \}$
+    \end{minted}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Loop Invariant: Example}
+    Algorithm for summing integers in a array.
+    $a[0] + a[1] + \ldots a[N-1] = (\Sigma i | 0 \leq i < N : a[i])$
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Loop Invariant: Example}
+    \begin{minted}[mathescape]{csharp}
+// $\{ 0 \leq N \}$
+int n = 0;
+int s = 0;
+// $\{ s = (\Sigma i | 0 \leq i < n : a[i]) \}$
+while (n != N) {
+    // $\{ s = (\Sigma i | 0 \leq i < n : a[i]) \wedge n \neq N \}$
+    s = s + a[n];
+    n = n + 1;
+    // $\{ s = (\Sigma i | 0 \leq i < n : a[i]) \}$
+}
+// $\{ s = (\Sigma i | 0 \leq i < N : a[i]) \wedge n = N \}$
+    \end{minted}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Loop Invariant: Example proof}
+    \begin{block}{Basis: $n=1$}
+        $a[0] = (\Sigma i | 0 \leq i < 1 : a[i])$
+    \end{block}
+    \begin{block}{Inductive step: $n+1$}
+        $a[0] + a[1] + \ldots + a[n-1] + a[n] = (\Sigma i | 0 \leq i < n + 1 :
+        a[i])$
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Loop Invariant: Example proof}
+    \begin{minted}[mathescape]{csharp}
+while (n != N) {
+    s = s + a[n];
+    // $\{ s = (\Sigma i | 0 \leq i < n + 1 : a[i]) \}$
+    n = n + 1;
+}
+    \end{minted}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Loop Invariant: Termination}
+    Function $T$ such that loop execution ends when $T=0$.
+
+    $T=N-n$ for the example.
+\end{frame}

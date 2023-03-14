@@ -1,0 +1,83 @@
+\input{../head.tex}
+
+\begin{frame}
+    \frametitle{Object invariant}
+
+    What is an object invariant? What is Code Contracts? How can it be used to
+    specify a class invariant?
+\end{frame}
+
+\section{Invariants}
+
+\begin{frame}
+    \frametitle{Invariants}
+
+    Property of ``something'' that doesn't change.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Object Invariants}
+
+    \begin{itemize}
+        \item Observable property
+        \item Doesn't change
+        \item + conceptual model
+    \end{itemize}
+\end{frame}
+
+\section{Code Contracts}
+
+\subsection{Overview}
+
+\input{../code_contracts.tex}
+
+\subsection{Object Invariants}
+
+\begin{frame}[fragile]
+    \frametitle{Simple Example}
+    \begin{minted}{csharp}
+    [ContractInvariantMethod]
+    private void ObjectInvariant() {
+        Contract.Invariant( this .y >= 0 );
+        Contract.Invariant( this .x > this.y );
+        ...
+    }
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Usefull Object Invariant}
+
+    \begin{minted}{csharp}
+public class BoundedQueue {
+    public BoundedQueue(int maxSize) { /* ... */ }
+    public void Enqueue(object item) {
+        Contract.Ensures(Count ==
+            Contract.OldValue(Count) + 1); // ...
+    }
+    public object Dequeue() {
+        Contract.Requires(Count > 0);
+        Contract.Ensures(Count ==
+            Contract.OldValue(Count) - 1); // ...
+    }
+    public int Count { get; private set; }
+    public int MaxCount { get; private set; }
+}
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Usefull Object Invariant}
+
+    \begin{minted}{csharp}
+[ContractInvariantMethod]
+private void ObjectInvariant(){
+    Contract.Invariant(Count >= 0);
+    Contract.Invariant(Count <= MaxCount);
+    Contract.Invariant(MaxCount ==
+        Contract.OldValue(MaxCount));
+}
+    \end{minted}
+\end{frame}
+
+\input{../tail.tex}

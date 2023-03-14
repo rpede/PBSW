@@ -1,0 +1,79 @@
+\input{../head.tex}
+
+\begin{frame}
+    \frametitle{Design of interfaces as contracts}
+
+    Present a number of principles for designing interfaces as contracts. You
+    may give examples in order to clarify the principles. How can we specify
+    interfaces? You may include Code Contracts.
+\end{frame}
+
+\section{The 6 Principles}
+
+\begin{frame}
+    \frametitle{Principle 1}
+    \begin{block}{Separate queries from commands.}
+        Example: \emph{Pop} for a stack.\\
+        \pause Introduce \emph{Peek} and \emph{Remove}.
+        % Queries return result but do not change the visible properties
+        % of the object.\\
+        % Commands might change object but do not return a result.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Principle 2}
+    \begin{block}{Separate basic queries from derived queries.}
+        Example: \emph{Peek} is derived from \emph{ElementAt}.
+        %Derived queries can be specified in terms of basic queries.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Principle 3}
+    \begin{block}{For each derived query, write a postcondition that specifies
+        what result will be returned in terms of one or more basic queries.}
+        Assume: \emph{Count}\\
+        \pause $Peek \to Post: Result = ElementaAt(Count)$
+        %Then, if we know the values of the basic queries, we also know the
+        %values of the derived queries.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Principle 4}
+    \begin{block}{For each command, write a postcondition that specifies the
+        value of every basic query.}
+        $Remove \to Post: Count = \textbf{old} Count - 1$
+        %Now we know the total visible effect of each command.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Principle 5}
+    \begin{block}{For every query and command, decide on a suitable
+        precondition.}
+        $Peek \to Pre: Count > 0$
+        %Preconditions constrain when clients may call the queries and commands.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Principle 6}
+    \begin{block}{Write invariants to define unchanging properties of objects.}
+        $Invariant: Count \geq 0$
+        %Concentrate on properties that help the reader build an appropriate
+        %conceptual model of the abstraction that the class embodies.
+    \end{block}
+\end{frame}
+
+\section{Interface Specification}
+
+\begin{frame}
+    \frametitle{Interface Specification}
+    Interface specifications using Code Contracts.
+\end{frame}
+
+\input{../class_specification.tex}
+
+\input{../tail.tex}

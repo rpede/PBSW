@@ -1,0 +1,50 @@
+\input{head.tex}
+\section{Q 2.3: Decision tables}
+
+\begin{frame}
+    \frametitle{Specification-Based Test Techniques}
+    \begin{itemize}
+        \item Black-box testing
+        \item Test cases derived from specification
+        \item Test the system according to the specification
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Decision Tables}
+    Test combinations of input
+    \begin{enumerate}
+        \item Table of combinations
+        \item Reduce the table
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example}
+    \textbf{Loan Repayment}\\
+    Monthly amount\\
+    Number of years\\~\\
+    If both are entered, then the system will make a compromise.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example}
+    \centering
+    \begin{tabular}{ l | l | l | l | l }
+        \textbf{Condition} & \textbf{Rule 1} & \textbf{Rule 2} &
+            \textbf{Rule 3} & \textbf{Rule 4}\\ \hline
+        Monthly amount  & T & F & T & F\\
+        Number of years & F & T & T & F\\
+        Output          & M & Y & C & \cellcolor{red}\\
+        % Atleast one test per column/business rule
+    \end{tabular}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Other Techniques}
+    If the amount is higher than 1000\$ the loan becomes more expensive.\\~\\
+
+    Equivalence partitioning, Boundary value analysis
+\end{frame}
+
+\input{tail.tex}

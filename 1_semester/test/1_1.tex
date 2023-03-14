@@ -1,0 +1,61 @@
+\input{head.tex}
+
+\section{Q 1.1: Risk management in testing}
+
+\subsection{Theory}
+\begin{frame}
+    \frametitle{Definition}
+    \textbf{Risk}\\
+    Anything that might prevent the project from delivering the right product
+    on time and on budget.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Risk management}
+    \begin{itemize}
+        \item Identification
+            % Identifying different risk items (project & quality).
+        \item Analysis
+            % Assessing the level of risk for each risk item. See ISO 9126.
+        \item Mitigation/control
+            % Mitigation contingency transference and acceptance actions for
+            % each risk. Implementing protective measures for reducing/managing
+            % the risks.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Risk Types}
+    \begin{itemize}
+        \item Product/quality risks
+        \item Project/planning risks
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Risk levels}
+    \begin{itemize}
+        \item Probability
+        \item Impact
+    \end{itemize}
+\end{frame}
+
+\subsection{Examples}
+\begin{frame}
+    \frametitle{Examples}
+    We are testing a coffee machine.
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{ | l | l | l | }
+        \hline
+        \textbf{Risk} & \textbf{Mitigation} & \textbf{Contingency} \\ \hline
+        Heater stops working & Reliability test the heater & Write ``out
+        of order'' on display \\ \hline
+        Doesn't meet the target price & Include headroom. & Use cheaper
+        components \\ \hline
+        Falling behind schedule & Monitor progress & Simplify the design \\
+        \hline
+    \end{tabular}%
+    }
+\end{frame}
+
+\input{tail.tex}

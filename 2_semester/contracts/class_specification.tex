@@ -1,0 +1,41 @@
+\begin{frame}[fragile]
+    \frametitle{Interface}
+
+    \begin{minted}{csharp}
+public interface ISimpleQueue {
+    void Enqueue(object item);
+    object Dequeue();
+    object ElementAt(int index);
+    int Count();
+}
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Contract}
+
+    \begin{minted}{csharp}
+abstract class ISimpleQueueContract {
+    public void Enqueue(object item) {
+        Contract.Requires(item != null);
+        Contract.Ensures(Count ==
+            Contract.OldValue(Count()) + 1);
+        Contract.Ensures(ElementAt(Count()) == item);
+        // ...
+    }
+    // ...
+}
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Associating Interface with Contract}
+
+    \begin{minted}{csharp}
+[ContractClass(typeof(ISimpleQueueContract))]
+public interface ISimpleQueue { /* ... */ }
+
+[ContractClassFor(typeof(ISimpleQueue))]
+abstract class ISimpleQueueContract { /* ... */ }
+    \end{minted}
+\end{frame}

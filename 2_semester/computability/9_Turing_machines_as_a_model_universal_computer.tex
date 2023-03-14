@@ -1,0 +1,46 @@
+\input{head.tex}
+
+\begin{frame}
+    \frametitle{Turing machines as a model universal computer}
+    Give a formal definition of a Turing Machine. Describe the language
+    accepted by a Turing machine and what it means that a Turing machine is
+    total.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Turing Machine}
+    $T = (Q, \Sigma, \Gamma, q_0, \delta)$\\
+
+    \vspace{10 pt}
+    $Q$, a finite set of states\\
+    $\Sigma$, the input alphabet ($\Sigma \subseteq \Gamma$)\\
+    $\Gamma$, the tape alphabet ($\Delta \not\in \Gamma$)\\
+    $q_0$, the initial state ($q_0 \in Q$)\\
+    $\delta$, the transition function\\
+    \[\delta: Q \times (\Gamma \cup \{\Delta\}) \rightarrow (Q \cup \{h_a,
+    h_r\}) \times (\Gamma \cup \{\Delta\} \times \{R, L, S\}\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Language accepted by a TM}
+    If $x \in \Sigma$ then $x$ is accepted by $T$ if
+    \[q_0 \Delta x \,\vdash^{\ast}_{T}\, w h_a y\]
+    $L \subseteq \Sigma^\ast$ is accepted by $T$ if $L = L(T)$ where
+    \[L(T) = \{x \in \Sigma^\ast \,|\, x \text{ is accepted by } T\}\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Total Turing Machine}
+    A TM that always halts.\\
+    \pause
+    \vspace{10pt}
+    Let $T$ be a TM that takes a description $T_1$ of a TM as input.\\
+    $T$ \emph{accepts} if the $T_1$ halts, and \emph{rejects} otherwise.\\
+    \pause
+    $T'$ is an extended $T_1$ where if $T_1$ accepts it will loop forever, and
+    if $T$ rejects it will accept.\\
+    \pause
+    Feed $T'$ to $T$.
+\end{frame}
+
+\input{tail.tex}

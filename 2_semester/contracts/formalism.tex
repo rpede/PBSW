@@ -1,0 +1,35 @@
+\begin{frame}[fragile]
+    \frametitle{Informal Specification}
+    \begin{minted}{csharp}
+public interface ISimpleDictionary {
+    /* Put 'key' into the dictionary with associated
+        'value'  */
+    void Put(string key, object value);
+
+    /* Remove 'key' from the dictionary */
+    void Remove(string key);
+
+    /* Does the dictionary contain 'key'? */
+    bool ContainsKey(string key);
+}
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Formal Specification}
+    \begin{minted}{csharp}
+public interface ISimpleDictionary {
+    /* Pre: key != null && !ContainsKey(key)
+        Post: ContainsKey(key) */
+    void Put(string key, object value);
+
+    /* Pre: key != null && ContainsKey(key)
+        Post: !ContainsKey(key) */
+    void Remove(string key);
+
+    /* Pre: key != null */
+    [Pure]
+    bool ContainsKey(string key);
+}
+    \end{minted}
+\end{frame}

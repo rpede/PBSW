@@ -1,0 +1,61 @@
+\input{head.tex}
+
+\begin{frame}
+    \frametitle{Non-deterministic Turing Machines as language acceptors}
+    Give a definition of a non-deterministic Turing Machine. Describe how a
+    non-deterministic Turing Machine processes its input and define the
+    language accepted by a non-deterministic Turing machine.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Nondeterministic Turing Machine (informal)}
+    \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=1.6cm]
+\node[initial,state]    (q0) {};
+\node[state]            (q1) [right of=q0] {};
+\node[state]            (q2) [right of=q1] {};
+\node[state]            (q3) [right of=q2] {};
+\node[state]            (q4) [right of=q3] {};
+\node[state]            (q5) [right of=q4] {$h_a$};
+
+\path[->] (q0) edge                 node {$\begin{array}{c}\Delta/\Delta\\R\end{array}$}    (q1);
+\path[->] (q1) edge                 node {$\begin{array}{c}\Delta/1\\R\end{array}$}         (q2);
+\path[->] (q2) edge                 node {$\begin{array}{c}\Delta/1\\R\end{array}$}         (q3);
+\path[->] (q3) edge [loop below]    node {$\begin{array}{c}\Delta/1\\R\end{array}$}         (q3);
+\path[->] (q3) edge                 node {$\begin{array}{c}\Delta/\Delta\\L\end{array}$}    (q4);
+\path[->] (q4) edge [loop below]    node {$\begin{array}{c}1/1\\L\end{array}$}              (q4);
+\path[->] (q4) edge                 node {$\begin{array}{c}\Delta/\Delta\\S\end{array}$}    (q5);
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Nondeterministic Turing Machine (formal)}
+    $T = (Q, \Sigma, \Gamma, q_0, \delta)$\\
+
+    \vspace{10 pt}
+    $Q$, a finite set of states\\
+    $\Sigma$, the input alphabet ($\Sigma \subseteq \Gamma$)\\
+    $\Gamma$, the tape alphabet ($\Delta \not\in \Gamma$)\\
+    $q_0$, the initial state ($q_0 \in Q$)\\
+    $\delta$, the transition function\\
+    \[\delta \subseteq Q \times (\Gamma \cup \{\Delta\}) \rightarrow (Q \cup
+    \{h_a, h_r\}) \times (\Gamma \cup \{\Delta\} \times \{R, L, S\}\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Computational power}
+    A NTM $T_1$ that acts as input to another $T_2$ can be thought of as
+    executing $T_2$ in parallel branches.\\
+    \pause
+    This behavior can be simulated by a deterministic TM executing in a
+    breadth-first manner.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Language accepted by a TM}
+    If $x \in \Sigma$ then $x$ is accepted by $T$ if
+    \[q_0 \Delta x \,\vdash^{\ast}_{T}\, w h_a y\]
+    $L \subseteq \Sigma^\ast$ is accepted by $T$ if $L = L(T)$ where
+    \[L(T) = \{x \in \Sigma^\ast \,|\, x \text{ is accepted by } T\}\]
+\end{frame}
+
+\input{tail.tex}

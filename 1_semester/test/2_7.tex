@@ -1,0 +1,51 @@
+\input{head.tex}
+\section{Q 2.7: Basis path / Cyclomatic complexity testing}
+
+\begin{frame}
+    \frametitle{Cyclomatic Complexity}
+    Measures the complexity of a piece of code.\\~\\
+
+    \begin{center}
+        $CC = E-N+2P$
+    \end{center}
+    % E is the number of edges, N the number of nodes, P the number of
+    % subroutines
+    % 10 is bad
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Example Code}
+    \begin{minted}[linenos]{csharp}
+int Factorial(int n) {
+    int f = 1;
+    if (n < 0)
+    {
+        // -1 indicates an error
+        f = -1;
+    }
+    else
+    {
+        for (int i = 1; i < n; i++)
+        {
+            f *= i;
+        }
+    }
+    return f;
+}
+    \end{minted}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example Graph}
+    \centering
+    \includegraphics[scale=0.4]{state_transition.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Test Cases}
+    Cyclomatic Complexity $7-6+2=3$.\\~\\
+    Test case 1: $n=0$\\
+    Test case 2: $n=2$\\
+\end{frame}
+
+\input{tail.tex}

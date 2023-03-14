@@ -1,0 +1,75 @@
+\input{head.tex}
+\section{Q 2.6: Control-flow testing: decisions and conditions}
+
+\begin{frame}
+    \frametitle{Control-Flow Testing}
+    \begin{itemize}
+        \item White-box testing
+        \item Control-Flow Graphs
+        \item Good coverage
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Decision Coverage}
+    Each branch or each edge.
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Condition Coverage}
+    Test each atomic condition \emph{True} or \emph{False}.
+    \begin{minted}{csharp}
+        if ((a>b) || (x+y>0) && (!d))
+        {
+            // ...
+        }
+    \end{minted}
+    % && has higher precedence than ||
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Decision/Condition Coverage}
+    \begin{columns}
+        \column{0.4\textwidth}
+        \begin{minted}{csharp}
+    if (a && b)
+    {
+        // path 1
+    }
+    else
+    {
+        // path 2
+    }
+        \end{minted}
+
+        \column{0.6\textwidth}
+        \begin{itemize}
+            \item Condition coverage
+                \begin{enumerate}
+                    \item $a = false, b = true \;\rightarrow\; path 2$
+                    \item $a = true, b = false \;\rightarrow\; path 2$
+                \end{enumerate}
+            \item Decision coverage
+                \begin{enumerate}
+                    \setcounter{enumi}{2}
+                    \item $a = true, b = true \;\rightarrow\; path 1$
+                \end{enumerate}
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Atomic Conditions}
+    % They are somewhat flawed
+    \begin{itemize}
+        \item Modified condition / decision coverage
+        \item Multiple condition coverage
+    \end{itemize}
+    \\~\\
+    Flawed because:
+    \begin{minted}{csharp}
+        bool ab = a && b; if (ab) { } else { }
+    \end{minted}
+\end{frame}
+
+\input{tail.tex}

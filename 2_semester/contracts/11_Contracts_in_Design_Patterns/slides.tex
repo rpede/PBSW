@@ -1,0 +1,130 @@
+\input{../head.tex}
+
+\begin{frame}
+    \frametitle{Contracts in Design Patterns}
+
+    Present a number of design patterns in which contracts play an essential
+    role. You may use Code Contract to illustrate contracts.
+\end{frame}
+
+\section{Command Pattern}
+
+\begin{frame}
+    \frametitle{Command Pattern}
+    \begin{itemize}
+        \item Commands can execute a single operation
+        \pause \item Interface with signature for the operatrion
+        \pause \item The invoker does not know the concrete type
+        \pause \item Used to queue operations
+        \pause \item Used to implement undo functionality
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Command Pattern: Interface}
+
+    \begin{minted}{csharp}
+[ContractClass(typeof(ICommandContract))]
+public interface ICommand {
+    IImmutableStack<int> Execute(
+            IImmutableStack<int> stack);
+    IImmutableStack<int> Undo(
+            IImmutableStack<int> stack);
+}
+    \end{minted}
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Command Pattern: Contract}
+
+    \begin{minted}{csharp}
+[ContractClassFor(typeof(ICommand))]
+abstract class ICommandContract {
+    IImmutableStack<int> Execute(
+            IImmutableStack<int> stack) {
+        Contract.Requires(stack != null);
+        Contract.Ensures(
+            Undo(Contract.Result<IImmutableStack<int>>())
+            == Contract.OldValue(stack));
+    }
+    // ...
+}
+    \end{minted}
+\end{frame}
+
+\section{Observer Pattern}
+
+\begin{frame}
+    \frametitle{Observer Pattern}
+        Allow a number of observers to subscribe to changes on an observable
+        object.
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Observer Interface}
+    \begin{minted}{csharp}
+public interface IObserver {
+    void Update();
+    bool IsUpdated();
+}
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Observable Interface}
+    \begin{minted}{csharp}
+public interface IObservable {
+    void Attach(IObserver observer);
+    void Detach(IObserver observer);
+    bool IsAttached(IObserver observer);
+    IEnumerable GetObservers();
+    void Notify();
+}
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Observable Contract}
+    \begin{minted}{csharp}
+abstract class IObservableContract {
+    void Attach(IObserver observer) {
+        Contract.Requires(observer != null);
+        Contract.Requires(!IsAttached(observer));
+        Contract.Ensures(IsAttached(observer));
+    }
+    // ...
+}
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Observable Contract}
+    \begin{minted}{csharp}
+abstract class IObservableContract {
+    // ...
+    bool IsAttached(IObserver observer) {
+        Contract.Requires(observer != null);
+        Contract.Ensures(Contract.Result<bool>() 
+            == GetObservers()
+                .Contains(Contract.OldValue(observer)));
+    }
+}
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Observable Contract}
+    \begin{minted}{csharp}
+abstract class IObservableContract {
+    // ...
+    void Notify() {
+        Contract.Ensures(Contract.ForAll(GetObservers(), 
+            x => x.IsUpdated()));
+    }
+}
+    \end{minted}
+\end{frame}
+
+
+\input{../tail.tex}

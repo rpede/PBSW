@@ -1,0 +1,53 @@
+\input{head.tex}
+
+\begin{frame}
+    \frametitle{Regular languages}
+    Define the class of regular languages. Is the complement of a regular
+    language regular? Is the intersection between to regular languages a
+    regular language?
+\end{frame}
+
+\begin{frame}
+    \frametitle{Regular Languages}
+    If $\Sigma$ is an alphabet, then the set of regular languages is defined
+    as:\\
+    $\mathcal{R}$:
+    \begin{enumerate}
+        \item $\emptyset \in \mathcal{R}$
+        \item For every $a \in \Sigma$, $\{a\} \in \mathcal{R}$
+        \item For any $L_1$ and $L_2$ in $\mathcal{R}$,
+            \[L_1 \cup L_2 \in \mathcal{R}\]
+            \[L_1 L_2 \in \mathcal{R}\]
+            \[L_1^\ast \in \mathcal{R}\]
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Combining FAs}
+    Suppose we have two FAs:\\
+    $M_1 = (Q_1, \Sigma, q_1, A_1, \delta_1)$\\
+    $M_2 = (Q_2, \Sigma, q_2, A_2, \delta_2)$\\
+    \pause
+    \vspace{10 pt}
+    Let $M$ be a FA too:\\
+    $M = (Q, \Sigma, q, A, \delta)$\\
+
+    \pause
+    \vspace{10 pt}
+    $Q = Q_1 \times Q_2$\\
+    $q_0 = (q_1, q2)$\\
+    $\delta((p, q), \sigma) = (\delta_1(p, \sigma), \delta_2(q, \sigma)))$
+\end{frame}
+
+\begin{frame}
+    \frametitle{Combining FAs}
+    $p \in Q_1$, $q \in Q_2$\\
+    \vspace{10 pt}
+    $L_1 \cup L_2$: $A = \{(p, q) | p \in A_1 \text{ or } q \in A_2\}$\\
+    \vspace{4 pt}
+    $L_1 \cap L_2$: $A = \{(p, q) | p \in A_1 \text{ and } q \in A_2\}$\\
+    \vspace{4 pt}
+    $L_1 - L_2$: $A = \{(p, q) | p \in A_1 \text{ and } q \not\in A_2\}$\\
+\end{frame}
+
+\input{tail.tex}

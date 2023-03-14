@@ -1,0 +1,97 @@
+\input{head.tex}
+\section{Q 1.5: Use case and test cases}
+
+\begin{frame}
+    \frametitle{Use Case}
+    A collection of possible scenarios between the system under discussion
+    and external actors, characterized by the goal the primary actor has
+    toward the system's declared responsibilities, showing how the primary
+    actor's goal might be delivered or might fail.
+    % Likely by Alistair Cockburn
+    % Non functional requirements are not part of use cases
+\end{frame}
+
+\begin{frame}[shrink]
+    \frametitle{Use Case Template}
+    \begin{enumerate}
+        \item Title
+            % Short sentence naming the goal of the primary actor.
+            % Example: Get a cup of coffee
+        \item Primary Actor
+            % Primary Actor is Normally the user
+            % Secondary Actor Normally the system
+        \item Goal in Context
+            % Example: A cup of coffee
+        \item Scope
+            % Enterprise, system, subsystem
+        \item Level
+            % Summary level goal
+            % User goal
+            % Subfunction level goal
+        \item Stakeholders and Interests
+        \item Preconditions
+            % The coffee machine has power
+        \item Minimal Guarantees
+            % The minimum guarantee in case of failure
+        \item Success Guarantees
+            % A cup of coffee is dispensed
+        \item Trigger
+            % Primary actor presses the button corresponding to the flavor
+            % he/she wants.
+        \item Main Success Scenario
+            % A flavor is selected and the machine dispenses a cup of the
+            % selected flavor.
+        \item Extensions
+            % Two kinds: Recovery and failure
+            % Recovery: Water is too cold. Wait while the water is heated.
+            % Failure: Empty for ingredients.
+        \item Technology and Data Variations List
+            % No GSM coverage -> the sale is logged locally
+            % Different flavors of coffee is selected
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Transforming to Test Cases}
+    \begin{itemize}
+        \item Main scenario $\times$ extensions $\times$ variations
+            $\rightarrow$ test cases
+            % Combining main scenario with extensions and variations result in
+            % test cases.
+        \item Precondition $\rightarrow$ entry criteria
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{IEEE 829 Test Specification}
+    \begin{itemize}
+        \item Test design specification identifier
+            % Specify the unique identifier assigned to this test design
+            % specification.  Supply a reference to the associated test plan, if
+            % it exists.
+        \item Features to be tested
+            % Identify the test items and describe the features and combinations
+            % of features that are the object of this design specification.
+            % Other features may be exercised, but need not be identified.  For
+            % each feature or feature combination, a reference to its associated
+            % requirements in the item requirement specification or design
+            % description should be included.
+        \item Approach refinements
+            % Specify refinements to the approach described in the test plan.
+            % Specify the results of any analysis that provides a rationale for
+            % test case selection.  For example, one might specify conditions
+            % that permit a determination of error tolerance (e.g., those
+            % conditions that distinguish valid inputs from invalid inputs).
+        \item Test identification
+            % List the identifier and a brief description of each test case
+            % associated with this design.  A particular test case may be
+            % identified in more than one test design specification.  List the
+            % identifier and a brief description of each procedure associated
+            % with this test design specification.
+        \item Feature pass/fail criteria
+            % Specify the criteria to be used to determine whether the feature
+            % or feature combination has passed or failed.
+    \end{itemize}
+\end{frame}
+
+\input{tail.tex}

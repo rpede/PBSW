@@ -1,0 +1,52 @@
+\input{head.tex}
+
+\section{Q 1.2: Test process and IEEE 829}
+\begin{frame}
+    \frametitle{Testing Process}
+    \begin{itemize}
+        \item Planning, control
+        \item Analysis, design
+        \item Implementation, execution
+        \item Evaluating exit criteria, reporting
+        \item Test closure activities
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{IEEE 829}
+    \begin{tabular}{ | l | l | }
+        \hline
+        \textbf{Test process} & \textbf{IEEE phases} \\ \hline
+        Test planning and control & \multirow{2}{*}{Preparation of test} \\
+            \cline{1-1}
+        Test analysis and design & \\ \hline
+        Test implementation and execution & Running the test \\ \hline
+        Evaluating exit criteria and reporting & \multirow{2}{*}{Completing of
+            test} \\ \cline{1-1}
+        Test closure activities & \\ \hline
+    \end{tabular}
+\end{frame}
+
+\begin{frame}
+    \frametitle{When stuff goes wrong}
+    \begin{itemize}
+        \item Error % User makes a mistake
+        \item Defect % A mistake in the source code (bug)
+        \item Failure % The systems fails to behave as expected
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Confirmation \& Regression}
+    \begin{itemize}
+        \item Confirmation testing
+            % Confirm that a defect has been fixed
+        \item Regression testing
+            % Test that changes did not introduce defects in other places
+    \end{itemize}
+    % The confirmation test should become part of regression testing
+    % Other types of testing include functional, non-functional, acceptance
+    % testing etc.
+\end{frame}
+
+\input{tail.tex}

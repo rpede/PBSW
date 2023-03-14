@@ -1,0 +1,79 @@
+\input{../head.tex}
+\section{Question}
+
+\begin{frame}
+    \frametitle{Invariants for loops and code contracts}
+
+    What is an invariant for a loop, and how can it be used to reason about the
+    behavior of a loop? Briefly explain what Code Contracts (.net tool) is and
+    explain how it can be used to decorate a loop with contracts in order to
+    ensure that a program assertion is an invariant.
+\end{frame}
+
+\section{Loop Invariants}
+
+\input{../loop_invariants.tex}
+
+\section{Code Contracts}
+
+\input{../code_contracts.tex}
+
+\subsection{Example}
+
+\begin{frame}
+    \frametitle{Example using Code Contracts}
+    Initialize and array $a$ with value $v$.
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Example: Basic Algorithm}
+    \begin{minted}[mathescape]{csharp}
+        int N = a.Length - 1;
+        int n = 0;
+        while (n != N) {
+            a[n] = v;
+            n = n + 1;
+        }
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Example: Decorated}
+    \begin{minted}[mathescape]{csharp}
+Contract.Requires(a.Length > 0);
+Contract.Ensures(Contract.ForAll(0, a.Length, 
+    i => a[i] == v));
+int N = a.Length;
+int n = 0;
+while (n != N) {
+    a[n] = v;
+    n = n + 1;
+}
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Example: Decorated}
+    \begin{minted}[mathescape]{csharp}
+Contract.Requires(a.Length > 0);
+Contract.Ensures(Contract.ForAll(0, a.Length,
+    i => a[i] == v));
+int N = a.Length;
+int n = 0;
+Contract.Assert(Contract.ForAll(0, n, i => a[i] == v));
+while (n != N) {
+    a[n] = v;
+    n = n + 1;
+    Contract.Assert(Contract.ForAll(0, n,
+        i => a[i] == v));
+}
+    \end{minted}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example: Termination}
+    Termination function: $T=N-n$ \\
+    When $n=N$ then $T=0$.
+\end{frame}
+
+\input{../tail.tex}

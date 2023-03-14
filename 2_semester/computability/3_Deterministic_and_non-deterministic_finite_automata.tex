@@ -1,0 +1,63 @@
+\input{head.tex}
+
+\begin{frame}
+    \frametitle{Deterministic and non-deterministic finite automata}
+    Define the two types of finite automata. Are the classes of languages they
+    define the same? Explain and justify your answer.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Finite Automata}
+    $(Q,\Sigma,q_0, A,\delta)$\\
+    $Q$ is a finite set of \emph{states};\\
+    $\Sigma$ is a finite \emph{input alphabet};\\
+    $q_0 \in Q$ is the \emph{initial} state;\\
+    $A \subseteq Q$ is the set of \emph{accepting} states;\\
+    $\delta$ is the \emph{transition} function.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Deterministic \& Nondeterministic FA}
+    \begin{block}{DFA}
+        $\delta : Q \times \Sigma \rightarrow Q$\\
+        For $q \in Q$ and $\sigma \in \Sigma$ then $\delta(q, \sigma)$ denotes
+        the state transition from $q$ on input $\sigma$.
+    \end{block}
+
+    \begin{block}{NFA}
+        $\delta : Q \times (\Sigma \cup \{\Lambda\}) \rightarrow 2^Q$\\
+        For $q \in Q$ and $\sigma \in (\Sigma \cup \{\Lambda\})$ then
+        $\delta(q, \sigma)$ denotes the set of states the NFA can move to from
+        $q$ on input $\sigma$.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Eliminating $\Lambda$-transistions}
+    $M = (Q,\Sigma,q_0,A,\delta)$\\
+    $M_1 = (Q,\Sigma,q_0,A_1,\delta_1)$\\
+    \pause
+    $ A_1 = \left\{
+        \begin{array}{l l}
+            A \cup \{q_0\} & \quad \text{if $\Lambda \in L$ }\\
+            A & \quad \text{if not}
+    \end{array} \right.$\\
+    \pause
+    For every $q \in Q$ and every $\sigma \in \Sigma$ then $\delta_1(q,\sigma)
+    = \delta^\ast(q,\sigma)$\\
+\end{frame}
+
+\begin{frame}
+    \frametitle{DFA accepting the same language as an NFA}
+    NFA $M = (Q, \Sigma, q_0, A, \delta)$\\
+    FA $M_1 = (Q_1, \Sigma, q_1, A_1, \delta_1)$\\
+    \pause
+    $Q_1 = 2^Q$\\
+    $q_1 = q_0$\\
+    \pause
+    $A_1 = \{q \in Q_1 | q \cap A \neq \emptyset \}$\\
+    \pause
+    $\delta_1(q,\sigma) = \bigcup\{ \delta(p,\sigma) | p \in q \}$\\
+\end{frame}
+
+\input{tail.tex}

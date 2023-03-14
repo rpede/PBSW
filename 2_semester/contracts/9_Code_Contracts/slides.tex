@@ -1,0 +1,60 @@
+\input{../head.tex}
+
+\begin{frame}
+    \frametitle{Code Contracts}
+
+    Is Code contract a tool supporting verification or test, or both? Discuss
+    and give examples.
+\end{frame}
+
+\section{Code Contracts}
+
+\input{../code_contracts.tex}
+
+\section{Verification}
+
+\subsection{Side-effects}
+
+\begin{frame}
+    \frametitle{Managing side-effects}
+    \begin{block}{Can NOT do}
+        \begin{itemize}
+            \item Enforce pureness
+            \pause \item Capture all side-effects in postconditions
+            \pause \item Enforce method calls
+        \end{itemize}
+    \end{block}
+
+    \pause \begin{block}{Can do}
+        \begin{itemize}
+            \item Calls in contracts are ``pure''
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\subsection{Validity}
+
+\begin{frame}
+    \frametitle{Validity of assertions}
+    \center\Huge{$\{Q\}S\{R\}$}
+\end{frame}
+
+\subsection{Conceptual}
+
+\begin{frame}
+    \frametitle{Conceptual}
+    \Huge{Verify our conception model}
+\end{frame}
+
+\section{Testing}
+
+\begin{frame}
+    \frametitle{Testing}
+    \begin{itemize}
+        \item Doesn't exercise code
+        \pause \item Fail early
+        \pause \item Test promises
+    \end{itemize}
+\end{frame}
+
+\input{../tail.tex}

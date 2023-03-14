@@ -1,0 +1,59 @@
+\input{../head.tex}
+\section{Question}
+
+\begin{frame}
+    \frametitle{Invariants for loops and proof by induction}
+
+    What is an invariant for a loop, and how can it be used to give a formal
+    proof of a loop? How can we argue that a loop will terminate? Explain proof
+    by induction and relate it to how to prove that a program assertion is a
+    loop invariant.
+\end{frame}
+
+\section{Proof by induction}
+
+\begin{frame}
+    \frametitle{Induction steps}
+    Prove that $P(n)$ holds for all values of $n$. Where $n$ is a natural
+    number.
+    \begin{block}{Base case}
+        Prove for some value of $n$ ($n=0$ or $n=1$).
+    \end{block}
+    \begin{block}{Inductive step}
+        Prove for $n+1$.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example}
+    $P(n): 0 + 1 + 2 + \cdots + n = \frac{n(n + 1)}{2}$
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example: Basis}
+    $P(0): 0 = \frac{0(0 + 1)}{2}$
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example: Inductive step}
+    Assume $P(n)$ holds. Show $P(n+1)$ holds.
+
+    \begin{align}
+    (0 + 1 + 2 + \cdots + n )+ (n+1) & = \frac{(n+1)((n+1) + 1)}{2} \\
+    & = \frac{(n+1)(n+2)}{2} \\
+    & = \frac{n(n+1)+2(n+1)}{2} \\
+    & = \frac{n(n + 1)}{2} + (n+1)
+    \end{align}
+\end{frame}
+
+\section{Loop Invariant}
+
+\begin{frame}
+    \frametitle{Invariant (general)}
+    A predicate describing some property that can be relied upon always to be
+    true.
+\end{frame}
+
+\input{../loop_invariants.tex}
+
+\input{../tail.tex}
